@@ -16,11 +16,11 @@ async function main() {
     setInterval(async () => {
         await handler.totalCheck(data);
         await handler.updateEntries(data, db);
-    }, 50000);
+    }, 36000000);
 
     setInterval(async () => {
         await handler.checkFornewProjects(db);
-    }, 100000);
+    }, 72000000);
 }
 
 async function handleFile() {
