@@ -17,22 +17,14 @@ jobs:
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
-    - uses: actions/checkout@v3
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-    - run: npm install
-    - run: tsc
-    
-  image:
-    
-    runs-on: ubuntu-latest
-    steps:
       - uses: actions/checkout@v3
-      - name: Build the Docker image
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+      - run: npm install
+      - run: tsc
       - run: docker login --password ${{ secrets.DOCKER_PASS }} --username ${{ secrets.DOCKER_USER }}
       - run: docker build . -t mordechaihadad/badge-updater
       - run: docker push mordechaihadad/badge-updater:latest
-    
