@@ -4,6 +4,11 @@ import * as fs from "./modules/fs";
 
 async function main() {
     let container: string = "localhost";
+
+    if (process.env.CONTAINER_NAME) {
+        container = process.env.CONTAINER_NAME;
+    }
+
     const db = new Surreal(`http://${container}:8000/rpc`);
     await loginDB(db);
 
