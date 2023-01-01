@@ -24,7 +24,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
       - run: npm install
-      - run: tsc
+      - run: npm run build
       - run: docker login --password ${{ secrets.DOCKER_PASS }} --username ${{ secrets.DOCKER_USER }}
       - run: docker build . -t mordechaihadad/badge-updater
       - run: docker push mordechaihadad/badge-updater:latest
